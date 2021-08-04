@@ -91,18 +91,23 @@ local log_borr "Log of Number of Borrowers"
 local log_loan_borr "Log of Loan Size"
 local log_borr_f "Log of Female Borrowers Ratio"
 
-local diff "A7 A8 A9 A10 A11 A12" /* Omitting A1 to A6 as reference */
+local diff " A7 A8 A9 A10 A11 A12" /* Omitting A1 to A6 as reference */
+* local diff " A1 A2 A3 A4 A5 A6 A7 A8 A9 A10 A11 A12"
+
 local y log_loan log_borr log_loan_borr log_borr_f
 local cov  equity2_asset cash_asset fundingP
 
+
+cap mkdir "Graph_Event_Study"
+
 foreach y in `y' {
-cd "C:\Users\phd14102\Google Drive\cma_nix\20200902_JICA_ AB Data Sharing\graph_figure"
+
 
 qui reg `y' `diff' `cov' i.id_mfi i.district_code##i.year, cluster(district_code)
 
 estimates store event`y'
 coefplot event`y', keep(`diff') vertical  yline(0) xtitle("Event time (Year - Year of M&A)", size(small)) title("``y''", size(medium)) saving("event`y'n", replace)
-graph export event`y'n.png, replace
+graph export "Graph_Event_Study\event`y'n.png", replace
 }
 
 /*
@@ -112,8 +117,8 @@ graph export "event1.png", replace
 */
 
 graph combine eventlog_loann.gph eventlog_borrn.gph eventlog_loan_borrn.gph eventlog_borr_fn.gph
-graph save "event2.gph", replace
-graph export "event2.png", replace
+graph save "Graph_Event_Study\event2.gph", replace
+graph export "Graph_Event_Study\event2.png", replace
 
 
 
