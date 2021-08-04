@@ -9,8 +9,12 @@ RESEARCH ASSISTANT: Hailegabriel Abebe Fenta
 
 ****** DATA 2011
 
-cd "C:\Users\phd14102\Google Drive\cma_nix"
-use "2011q4.dta", clear
+
+cd 
+
+global datafilepath Data
+
+use "${datafilepath}\2011q4.dta", clear
 br district_code district_name B name
 tostring district_code, replace
 
@@ -30,13 +34,11 @@ gen am_loan=amount_loan if amount_loan<1000000
 drop amount_loan
 rename am_loan amount_loan
 
-cd "C:\Users\phd14102\Google Drive\cma_nix\cma_nix_new"
-save "2011q4_n.dta", replace
+save "${datafilepath}\2011q4_n.dta", replace
 
 ********* DATA 2012
 
-cd "C:\Users\phd14102\Google Drive\cma_nix"
-use "2012q4.dta", clear
+use "${datafilepath}\2012q4.dta", clear
 br district_code district_name
 tostring district_code, replace
 
@@ -55,13 +57,11 @@ gen am_loan=amount_loan if amount_loan<1000000
 drop amount_loan
 rename am_loan amount_loan
 
-cd "C:\Users\phd14102\Google Drive\cma_nix\cma_nix_new"
-save "2012q4_n.dta", replace
+save "${datafilepath}\2012q4_n.dta", replace
 
 ****** DATA 2013
 
-cd "C:\Users\phd14102\Google Drive\cma_nix"
-use "2013q4.dta", clear
+use "${datafilepath}\2013q4.dta", clear
 br district_code district_name
 tostring district_code, replace
 
@@ -74,13 +74,11 @@ replace district_code="2506" if district_code=="317"
 replace district_code="2507" if district_code=="316"
 
 gen year=2013
-cd "C:\Users\phd14102\Google Drive\cma_nix\cma_nix_new"
-save "2013q4_n.dta", replace
+save "${datafilepath}\2013q4_n.dta", replace
 
 ****** DATA 2014
 
-cd "C:\Users\phd14102\Google Drive\cma_nix"
-use "2014q4.dta", clear
+use "${datafilepath}\2014q4.dta", clear
 br district_code district_name
 tostring district_code, replace
 
@@ -96,42 +94,34 @@ replace district_code="2506" if district_code=="317"
 replace district_code="2507" if district_code=="316"
 
 gen year=2014
-cd "C:\Users\phd14102\Google Drive\cma_nix\cma_nix_new"
-save "2014q4_n.dta", replace
+save "${datafilepath}\2014q4_n.dta", replace
 
 
 
 ****** DATA 2015
 
-cd "C:\Users\phd14102\Google Drive\cma_nix"
-use "2015q4.dta", clear
+use "${datafilepath}\2015q4.dta", clear
 br district_code district_name
 tostring district_code, replace
 
 drop if district_name==""
 
 gen year=2015
-cd "C:\Users\phd14102\Google Drive\cma_nix\cma_nix_new"
-save "2015q4_n.dta", replace
+save "${datafilepath}\2015q4_n.dta", replace
 
 
 ****** DATA 2016
-
-cd "C:\Users\phd14102\Google Drive\cma_nix"
-use "2016q4.dta", clear
+use "${datafilepath}\2016q4.dta", clear
 br district_code district_name
 tostring district_code, replace
 
 
 drop if district_name==""
 gen year=2016
-cd "C:\Users\phd14102\Google Drive\cma_nix\cma_nix_new"
-save "2016q4_n.dta", replace
+save "${datafilepath}\2016q4_n.dta", replace
 
 ****** DATA 2017
-
-cd "C:\Users\phd14102\Google Drive\cma_nix"
-use "2017q4.dta", clear
+use "${datafilepath}\2017q4.dta", clear
 br district_code district_name
 distinct district_code district_name N
 tostring district_code, replace
@@ -139,27 +129,23 @@ tostring district_code, replace
 
 drop if district_name==""
 gen year=2017
-cd "C:\Users\phd14102\Google Drive\cma_nix\cma_nix_new"
-save "2017q4_n.dta", replace
+save "${datafilepath}\2017q4_n.dta", replace
 
 ****** DATA 2018
 
-cd "C:\Users\phd14102\Google Drive\cma_nix"
-use "2018q4.dta", clear
+use "${datafilepath}\2018q4.dta", clear
 br district_code district_name amount_loan
 tostring district_code, replace
 
 drop if district_name==""
 
 gen year=2018
-cd "C:\Users\phd14102\Google Drive\cma_nix\cma_nix_new"
-save "2018q4_n.dta", replace
+save "${datafilepath}\2018q4_n.dta", replace
 
 
 ****** DATA 2019
 
-cd "C:\Users\phd14102\Google Drive\cma_nix"
-use "2019q4.dta", clear
+use "${datafilepath}\2019q4.dta", clear
 br district_name district_code amount_loan
 browse if missing(real(amount_loan))
 replace amount_loan="" if amount_loan=="-"
@@ -199,24 +185,23 @@ tostring district_code, replace
 drop if district_code=="1213" | district_code=="1214" /* Only in 2019 */
 gen year=2019
 
-cd "C:\Users\phd14102\Google Drive\cma_nix\cma_nix_new"
-save "2019q4_n.dta", replace
+save "${datafilepath}\2019q4_n.dta", replace
 
 
 * APPENDING
 
 
-cd "C:\Users\phd14102\Google Drive\cma_nix\cma_nix_new"
+cd 
 clear
-append using "2011q4_n" "2012q4_n" "2013q4_n" "2014q4_n" "2015q4_n" "2016q4_n" "2017q4_n" "2018q4_n" "2019q4_n", force
+append using "${datafilepath}\2011q4_n" "${datafilepath}\2012q4_n" "${datafilepath}\2013q4_n" "${datafilepath}\2014q4_n" "${datafilepath}\2015q4_n" "${datafilepath}\2016q4_n" "${datafilepath}\2017q4_n" "${datafilepath}\2018q4_n" "${datafilepath}\2019q4_n", force
 
-distinct district_code  // 197 distinct district codes
-br district_name district_code year N
-br district_code
+// distinct district_code  // 197 distinct district codes
+// br district_name district_code year N
+// br district_code
 destring district_code, gen(dist)
 replace district_code="0"+district_code if dist<1000
 drop dist
-br district_code
+// br  district_code
 
 destring num_male_loan, replace
 
@@ -226,7 +211,7 @@ gen loan_size=amount_loan/total_num_borrowers
 keep num_commune num_village num_office amount_loan par_30 ratio_par_30 write_off ratio_write_off reschedule_loan ratio_reschedule_loan num_male_loan num_female_loan total_num_borrowers amount_deposit num_male_deposits num_female_deposits total_num_depositors num_staff_male num_staff_female total_staff loan_size district_code year name
 
 
-save "cma2011_19.dta", replace
+save "${datafilepath}\cma2011_19.dta", replace
 
 ************************************************************************************************************************************************************************
 ***********************
@@ -240,11 +225,10 @@ I drop the pre-existing "year" variable from CDB2014_com(2) CDB2015_com(2) CDB20
 For 2018, I do separately because the merging within the village, commune, and district level has been already done
 */
 clear
-cd "C:\Users\phd14102\Google Drive\cma_nix\Commune Database"
-use "CDB2014_vill(1)", clear
-merge 1:1 villGis using "CDB2014_vill(2)", generate(merge)
+use "${datafilepath}\CDB2014_vill(1)", clear
+merge 1:1 villGis using "${datafilepath}\CDB2014_vill(2)", generate(merge)
 drop merge
-merge 1:1 villGis using "CDB2014_vill(3)", generate(merge)
+merge 1:1 villGis using "${datafilepath}\CDB2014_vill(3)", generate(merge)
 drop merge
 gen vvv=villGis
 tostring villGis, replace
@@ -254,9 +238,9 @@ drop vvv
 br commGis villGis 
 
 destring commGis, replace
-merge m:1 commGis using "CDB2014_com(1)", generate(merge)
+merge m:1 commGis using "${datafilepath}\CDB2014_com(1)", generate(merge)
 drop merge
-merge m:1 commGis using "CDB2014_com(2)", generate(merge)
+merge m:1 commGis using "${datafilepath}\CDB2014_com(2)", generate(merge)
 drop merge
 gen ccc=commGis
 tostring commGis, replace
@@ -265,7 +249,7 @@ gen distGis=substr(commGis, 1,4)
 drop ccc
 
 destring distGis, replace
-merge m:1 distGis using "CDB2014_dist", generate(merge)
+merge m:1 distGis using "${datafilepath}\CDB2014_dist", generate(merge)
 drop merge
 gen ddd=distGis
 tostring distGis, replace
@@ -276,7 +260,7 @@ rename villGis VillGis
 rename commGis CommGis
 rename distGis DistGis
 gen year=2014
-save "merged_CDB2014all", replace
+save "${datafilepath}\merged_CDB2014all", replace
 
 
 /* FOR 2015, 2016, 2017, AND 2019 
@@ -288,11 +272,10 @@ because 2018 is also a bit different, we make it separately
 
 clear
 foreach y in 2015 2016 2017 {
-cd "C:\Users\phd14102\Google Drive\cma_nix\Commune Database"
-use "CDB`y'_vill(1)", clear
-merge 1:1 VillGis using "CDB`y'_vill(2)", generate(merge)
+use "${datafilepath}\CDB`y'_vill(1)", clear
+merge 1:1 VillGis using "${datafilepath}\CDB`y'_vill(2)", generate(merge)
 drop merge
-merge 1:1 VillGis using "CDB`y'_vill(3)", generate(merge)
+merge 1:1 VillGis using "${datafilepath}\CDB`y'_vill(3)", generate(merge)
 drop merge
 gen vvv=VillGis
 tostring VillGis, replace
@@ -302,9 +285,9 @@ drop vvv
 br CommGis VillGis 
 
 destring CommGis, replace
-merge m:1 CommGis using "CDB`y'_com(1)", generate(merge)
+merge m:1 CommGis using "${datafilepath}\CDB`y'_com(1)", generate(merge)
 drop merge
-merge m:1 CommGis using "CDB`y'_com(2)", generate(merge)
+merge m:1 CommGis using "${datafilepath}\CDB`y'_com(2)", generate(merge)
 drop merge
 gen ccc=CommGis
 tostring CommGis, replace
@@ -313,46 +296,44 @@ gen DistGis=substr(CommGis, 1,4)
 drop ccc
 
 destring DistGis, replace
-merge m:1 DistGis using "CDB`y'_dist", generate(merge)
+merge m:1 DistGis using "${datafilepath}\CDB`y'_dist", generate(merge)
 drop merge
 gen ddd=DistGis
 tostring DistGis, replace
 replace DistGis="0"+DistGis if ddd<1000
 gen year=`y'
-save "merged_CDB`y'all", replace
+save "${datafilepath}\merged_CDB`y'all", replace
 clear
 }
 
 * FOR 2018
 clear
-cd "C:\Users\phd14102\Google Drive\cma_nix\Commune Database"
-use "CDB2018_vill", clear
+use "${datafilepath}\CDB2018_vill", clear
 gen CommGis=substr(VillGis, 1,6)
 destring CommGis, replace
-merge m:1 CommGis using "CDB2018_com", generate(merge)
+merge m:1 CommGis using "${datafilepath}\CDB2018_com", generate(merge)
 drop merge
 gen ccc=CommGis
 tostring CommGis, replace
 replace CommGis="0"+CommGis if ccc<100000
 drop ccc
 destring DistGis, replace
-merge m:1 DistGis using "CDB2018_dist", generate(merge)
+merge m:1 DistGis using "${datafilepath}\CDB2018_dist", generate(merge)
 drop merge
 gen ddd=DistGis
 tostring DistGis, replace
 replace DistGis="0"+DistGis if ddd<1000
 br VillGis CommGis DistGis
 gen year=2018
-save "merged_CDB2018all", replace
+save "${datafilepath}\merged_CDB2018all", replace
 
 * For 2019
 
 clear
-cd "C:\Users\phd14102\Google Drive\cma_nix\Commune Database"
-use "CDB2019_vill(1)", clear
-merge 1:1 VillGis using "CDB2019_vill(2)", generate(merge)
+use "${datafilepath}\CDB2019_vill(1)", clear
+merge 1:1 VillGis using "${datafilepath}\CDB2019_vill(2)", generate(merge)
 drop merge
-merge 1:1 VillGis using "CDB2019_vill(3)", generate(merge)
+merge 1:1 VillGis using "${datafilepath}\CDB2019_vill(3)", generate(merge)
 drop merge
 gen vvv=VillGis
 tostring VillGis, replace
@@ -362,7 +343,7 @@ drop vvv
 br CommGis VillGis 
 
 destring CommGis, replace
-merge m:1 CommGis using "CDB2019_com(1)", generate(merge)
+merge m:1 CommGis using "${datafilepath}\CDB2019_com(1)", generate(merge)
 drop merge
 gen ccc=CommGis
 tostring CommGis, replace
@@ -371,7 +352,7 @@ gen DistGis=substr(CommGis, 1,4)
 drop ccc
 
 destring DistGis, replace
-merge m:1 DistGis using "CDB2019_dist", generate(merge)
+merge m:1 DistGis using "${datafilepath}\CDB2019_dist", generate(merge)
 drop merge
 gen ddd=DistGis
 tostring DistGis, replace
@@ -379,7 +360,7 @@ replace DistGis="0"+DistGis if ddd<1000
 
 br DistGis CommGis VillGis
 gen year=2019
-save "merged_CDB2019all", replace
+save "${datafilepath}\merged_CDB2019all", replace
 
 
 
@@ -423,13 +404,11 @@ tab district_code,m
 drop if district_code=="." | land_areaC==0
 
 
-cd "C:\Users\phd14102\Google Drive\cma_nix\cma_nix_new"
-save "appended_CDB2014-19all", replace
+save "${datafilepath}\appended_CDB2014-19all", replace
 
 **************************************************************************
 
-cd "C:\Users\phd14102\Google Drive\cma_nix\cma_nix_new"
-use "cma2011_19.dta", clear
+use "${datafilepath}\cma2011_19.dta", clear
 drop if year<2014
 
 * Assigning IDs for MFIs
@@ -574,15 +553,15 @@ replace id_mfi=234	 if name=="YCP"
 tab id_mfi,m   /* 194 missing for both name and id_mfi */
 drop if id_mfi==.
 
-merge m:1 district_code year using  "appended_CDB2014-19all"
+merge m:1 district_code year using  "${datafilepath}\appended_CDB2014-19all"
 drop if _merge!=3   
 drop _merge
 
 
-merge m:m id_mfi year using  "asset_liq_mfi-nbc"
+merge m:m id_mfi year using  "${datafilepath}\asset_liq_mfi-nbc"
 drop if _merge!=3   
 drop _merge
 
-save "cleaned_merged2011_19.dta", replace
+save "${datafilepath}\cleaned_merged2011_19.dta", replace
 
 

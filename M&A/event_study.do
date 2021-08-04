@@ -3,8 +3,14 @@
 clear matrix
 clear mata
 set emptycells drop 
-cd "C:\Users\phd14102\Google Drive\cma_nix\cma_nix_new"
-use "cleaned_merged2011_19.dta", clear
+
+cd 
+
+global datafilepath Data
+
+do "Data preparation and merging.do"
+
+use "Data\cleaned_merged2011_19.dta", clear
 
 * Asset
 rename m_asset1 total_asset
@@ -19,7 +25,7 @@ rename m_liability15 retained
 
 gen hybrid=hybrid_cap
 
-browse if missing(real(hybrid_cap))
+// browse if missing(real(hybrid_cap))
 destring hybrid_cap, replace force 
 
 *LIABILITY
