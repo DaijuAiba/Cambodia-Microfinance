@@ -13,14 +13,12 @@ We aim to empirically estimate the effect of merger and acquisition (M&A) cases 
 <img src="https://render.githubusercontent.com/render/math?math=y_{ijt} = \Sigma_{k=-4}^{-1} \beta_{k} \times treat_{ik}%2B \Sigma_{k=0}^{4} \beta_{k} \times treat_{ik} %2B \gamma X_{it} %2B \mu_i %2B \nu_{jt} %2B \epsilon_{ijt}"><br>
 
 
-
-
-$$ y_{ijt} = \Sigma_{k=-4}^{-1} \beta_{k} \times treat_{ik} + \Sigma_{k=0}^{4} \beta_{k} \times treat_{ik}+\gamma X_{it} + \mu_i+\nu_{jt} + \epsilon_{ijt} $$
-
+<!-- 
+ $$ y_{ijt} = \Sigma_{k=-4}^{-1} \beta_{k} \times treat_{ik} + \Sigma_{k=0}^{4} \beta_{k} \times treat_{ik}+\gamma X_{it} + \mu_i+\nu_{jt} + \epsilon_{ijt} $$ 
+-->
 
 $treat_{ik}$ is a dummy variable, equaling 1 if the observation’s periods relative to the group 
-g
-’s first treated period is the same value as k; 0 otherwise (and 0 for all never-treated groups).
+g ’s first treated period is the same value as k; 0 otherwise, and it also takes 0 for all never-treated groups.
 Estimation is  performed with standard errors clustered at a district level.
 <br><br>
 
@@ -40,7 +38,7 @@ Table 1 shows the results of the estimation.
 
 
 <figure>
-    <img src="Graph_Event_Study/EventStudy.png" alt="Table 1" title="Table 1" />
+    Table 1 <img src="Graph_Event_Study/EventStudy.png" alt="Table 1" title="Table 1" />
     Note: A red-colored line in each panel represents the average of coefficients before the event.
 </figure>
 
