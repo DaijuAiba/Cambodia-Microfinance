@@ -9,7 +9,13 @@ We aim to empirically estimate the effect of merger and acquisition (M&A) cases 
 ## 2. Empirical Methodology 
 ### 2.1 Empirical Model
 
-$$  y_{ijt}= \Sigma_{k=-4}^{-1} \beta_{k}  \times treat_{ik} +\Sigma_{k=0}^{4} \beta_{k}  \times treat_{ik} + \gamma X_{it} + \mu_i + \nu_{jt} + \epsilon_{ijt} $$
+
+<img src="https://render.githubusercontent.com/render/math?math=y_{ijt} = \Sigma_{k=-4}^{-1} \beta_{k} \times treat_{ik} - \Sigma_{k=0}^{4} \beta_{k} \times treat_{ik} - \gamma X_{it} - \mu_i - \nu_{jt} - \epsilon_{ijt}"><br>
+
+
+
+$$ y_{ijt} = \Sigma_{k=-4}^{-1} \beta_{k} \times treat_{ik} + \Sigma_{k=0}^{4} \beta_{k} \times treat_{ik}+\gamma X_{it} + \mu_i+\nu_{jt} + \epsilon_{ijt} $$
+
 
 $treat_{ik}$ is a dummy variable, equaling 1 if the observation’s periods relative to the group 
 g
@@ -37,9 +43,5 @@ Table 1 shows the results of the estimation.
     Note: A red-colored line in each panel represents the average of coefficients before the event.
 </figure>
 
-<<<<<<< HEAD
-=======
-![Alternate image text](Graph_Event_Study/EventStudy.png)
->>>>>>> 436866b8318d8783f10e981fbed9037ac8777580
 
 
