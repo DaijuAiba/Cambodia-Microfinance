@@ -10,7 +10,8 @@ We aim to empirically estimate the effect of merger and acquisition (M&A) cases 
 ### 2.1 Empirical Model
 
 
-<img src="https://render.githubusercontent.com/render/math?math=y_{ijt} = \Sigma_{k=-4}^{-1} \beta_{k} \times treat_{ik} - \Sigma_{k=0}^{4} \beta_{k} \times treat_{ik} - \gamma X_{it} - \mu_i - \nu_{jt} - \epsilon_{ijt}"><br>
+<img src="https://render.githubusercontent.com/render/math?math=y_{ijt} = \Sigma_{k=-4}^{-1} \beta_{k} \times treat_{ik}%2B \Sigma_{k=0}^{4} \beta_{k} \times treat_{ik} %2B \gamma X_{it} %2B \mu_i %2B \nu_{jt} %2B \epsilon_{ijt}"><br>
+
 
 
 
