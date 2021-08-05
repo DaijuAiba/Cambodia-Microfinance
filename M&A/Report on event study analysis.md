@@ -31,6 +31,6 @@ Table 1 presents the effect of change in MFIs foreign share on loan-related indi
 Table 2 presents the effect of M&A in MFIs on loan-related indicators. Unlike the previous case, I construct the indicator for the M&A (MA5) excluding those M&A cases before 2014 as you suggested last time. However, most of the estimates remain robust to those obtained including the cases before 2014. The result in column 1 shows that M&A positively affects the loan amount (increases by about 33 percent). After including the interactions in column 2, however, the estimate for M&A turns to be negative. Moving from less to the highly-populated area, however, M&A increases loan amount by 23 percent. Moreover, moving from low to high disaster incidence areas, M&A increases loan amount by approximately 70 percent. We observe similar results for the effect on the total number of borrowers. Loan size is affected positively by 24 percent as shown in column 5 before interacting M&A with population and disaster. Moreover, column 6 shows that M&A increases loan size as we move to densely populated areas and high disaster incidence areas. Finally, M&A decreases the ratio of females to a total number of borrowers as shown in columns 7 and 8.
 
 
-![Alternate image text](/Graph_Event_Study/EventStudy.png)
+![Alternate image text](\Graph_Event_Study\EventStudy.png)
 
 
