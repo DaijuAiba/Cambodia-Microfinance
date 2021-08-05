@@ -7,12 +7,14 @@ We aim to empirically estimate the effect of merger and acquisition (M&A) cases 
 
 
 ## 2. Empirical Methodology 
-
-
-
 ### 2.1 Empirical Model
 
+$$  y_{ijt}= \Sigma_{k=-4}^{-1} \beta_{k}  \times treat_{ik} +\Sigma_{k=0}^{4} \beta_{k}  \times treat_{ik} + \gamma X_{it} + \mu_i + \nu_{jt} + \epsilon_{ijt} $$
 
+$treat_{ik}$ is a dummy variable, equaling 1 if the observation’s periods relative to the group 
+g
+’s first treated period is the same value as k; 0 otherwise (and 0 for all never-treated groups).
+Estimation is  performed with standard errors clustered at a district level.
 <br><br>
 
 ### 2.2 Data
@@ -26,11 +28,14 @@ The policy variables include indicators for M&A cases of MFIs. To empirically ex
 <br><br>
 
 ## 3. Results 
-Table 1 presents the effect of change in MFIs foreign share on loan-related indicators. Here, I construct the indicator for the change in foreign share (MA4) using the MFI-NBC data initially before merging with other data sets as you suggested last time. However, most of the coefficients are insignificant at the 5 percent significance level.
-
-Table 2 presents the effect of M&A in MFIs on loan-related indicators. Unlike the previous case, I construct the indicator for the M&A (MA5) excluding those M&A cases before 2014 as you suggested last time. However, most of the estimates remain robust to those obtained including the cases before 2014. The result in column 1 shows that M&A positively affects the loan amount (increases by about 33 percent). After including the interactions in column 2, however, the estimate for M&A turns to be negative. Moving from less to the highly-populated area, however, M&A increases loan amount by 23 percent. Moreover, moving from low to high disaster incidence areas, M&A increases loan amount by approximately 70 percent. We observe similar results for the effect on the total number of borrowers. Loan size is affected positively by 24 percent as shown in column 5 before interacting M&A with population and disaster. Moreover, column 6 shows that M&A increases loan size as we move to densely populated areas and high disaster incidence areas. Finally, M&A decreases the ratio of females to a total number of borrowers as shown in columns 7 and 8.
+Table 1 shows the results of the estimation.
 
 
-![Alternate image text](\Graph_Event_Study\EventStudy.png)
+
+<figure>
+    <img src="Graph_Event_Study/EventStudy.png" alt="Table 1" title="Table 1" />
+    Note: A red-colored line in each panel represents the average of coefficients before the event.
+</figure>
+
 
 
