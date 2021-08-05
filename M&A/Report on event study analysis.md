@@ -37,5 +37,9 @@ Table 1 shows the results of the estimation.
     Note: A red-colored line in each panel represents the average of coefficients before the event.
 </figure>
 
+<<<<<<< HEAD
+=======
+![Alternate image text](Graph_Event_Study/EventStudy.png)
+>>>>>>> 436866b8318d8783f10e981fbed9037ac8777580
 
 
