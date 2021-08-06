@@ -11,7 +11,7 @@ cd
 
 global datafilepath Data
 
-// do "Data preparation and merging.do"
+do "Data preparation and merging.do"
 
 use "Data\cleaned_merged2011_19.dta", clear
 
@@ -232,29 +232,64 @@ cap mkdir "Graph_Event_Study"
 
 reg log_loan  A1 A2 A3 A4 A5 A6 A7 A8 A9   $cov i.id_mfi i.district_code##i.year, cluster(district_code) noconstant
 estimates store event1
-mat B=e(b)
-mat b=B["A1","A2","A3","A4"]
+mat B1=e(b)
 
-coefplot event1, keep($diff) vertical xline()  yline(0) xtitle("Event time (Year - Year of M&A)", size(small)) 
+mat b=B1[" y1","A1".."A4"]
+mat I=J(4,1,1)
+mat m= b*I/4
+scalar mean=m[1,1]
+local k = mean
 
-reg log_borr  A1 A2 A3 A4 A5 A6 A7 A8 A9  $cov i.id_mfi i.district_code##i.year, cluster(district_code) noconstant
+coefplot event1, keep($diff) vertical   yline(`k') xline(4.5,lp(dash)lc(black)) xtitle("Event time (Year - Year of M&A)", size(small)) title("Log of Loan Amount") saving("Graph_Event_Study\event1", replace) 
+
+reg log_borr  A1 A2 A3 A4 A5 A6 A7 A8 A9  $cov i.id_mfi i.district_code##i.year, cluster(district_code) noconstant 
 estimates store event2
-coefplot event2, keep($diff) vertical xline()  yline(0) xtitle("Event time (Year - Year of M&A)", size(small)) 
+mat B2=e(b)
 
+mat b=B2[" y1","A1".."A4"]
+mat I=J(4,1,1)
+mat m= b*I/4
+scalar mean=m[1,1]
+local k = mean
+coefplot event2, keep($diff) vertical yline(`k') xline(4.5,lp(dash)lc(black))xtitle("Event time (Year - Year of M&A)", size(small)) title("Log of Number of Borrowers") saving("Graph_Event_Study\event2", replace)
+ 
 reg log_loan_borr  A1 A2 A3 A4 A5 A6 A7 A8 A9  $cov i.id_mfi i.district_code##i.year, cluster(district_code) noconstant
 estimates store event3
-coefplot event3, keep($diff) vertical xline()  yline(0) xtitle("Event time (Year - Year of M&A)", size(small)) 
+mat B3=e(b)
+
+mat b=B3[" y1","A1".."A4"]
+mat I=J(4,1,1)
+mat m= b*I/4
+scalar mean=m[1,1]
+local k = mean
+coefplot event3, keep($diff) vertical   yline(`k')xline(4.5,lp(dash)lc(black)) xtitle("Event time (Year - Year of M&A)", size(small)) title("Log of Loan Size") saving("Graph_Event_Study\event3", replace)
 
 
 reg borr_f  A1 A2 A3 A4 A5 A6 A7 A8 A9  $cov i.id_mfi i.district_code##i.year, cluster(district_code) noconstant
 estimates store event4
-coefplot event4, keep($diff) vertical xline()  yline(0) xtitle("Event time (Year - Year of M&A)", size(small)) 
+mat B4=e(b)
+
+mat b=B4[" y1","A1".."A4"]
+mat I=J(4,1,1)
+mat m= b*I/4
+scalar mean=m[1,1]
+local k = mean
+coefplot event4, keep($diff) vertical   yline(`k') xline(4.5,lp(dash)lc(black)) xtitle("Event time (Year - Year of M&A)", size(small))title("Female Borrowers Ratio")  saving("Graph_Event_Study\event4", replace)
 
 
 
+graph combine "Graph_Event_Study\event1.gph" "Graph_Event_Study\event2.gph" "Graph_Event_Study\event3.gph" "Graph_Event_Study\event4.gph", saving(Graph_Event_Study\EventStudy,replace)
+
+graph export "Graph_Event_Study\EventStudy.png", replace
+
+
+hist event, saving(Graph_Event_Study\eventhist,replace)
+
+graph export "Graph_Event_Study\eventhist.png", replace
 
 
 
+/*
 foreach y in `y' {
 
 
@@ -276,7 +311,7 @@ graph save "Graph_Event_Study\event2.gph", replace
 graph export "Graph_Event_Study\event2.png", replace
 
 
-
+*/
 
 
 

@@ -15,7 +15,7 @@ cd
 global datafilepath Data
 
 use "${datafilepath}\2011q4.dta", clear
-br district_code district_name B name
+*br district_code district_name B name
 tostring district_code, replace
 
 
@@ -28,7 +28,7 @@ replace district_code="2506" if district_code=="317"
 replace district_code="2507" if district_code=="316"
 
 gen year=2011
-br district_code district_name year
+*br district_code district_name year
 tab amount_loan,m
 gen am_loan=amount_loan if amount_loan<1000000
 drop amount_loan
@@ -39,7 +39,7 @@ save "${datafilepath}\2011q4_n.dta", replace
 ********* DATA 2012
 
 use "${datafilepath}\2012q4.dta", clear
-br district_code district_name
+*br district_code district_name
 tostring district_code, replace
 
 replace district_code="2501" if district_code=="304"
@@ -51,7 +51,7 @@ replace district_code="2506" if district_code=="317"
 replace district_code="2507" if district_code=="316"
 
 gen year=2012
-br district_code district_name year
+*br district_code district_name year
 tab amount_loan,m
 gen am_loan=amount_loan if amount_loan<1000000
 drop amount_loan
@@ -62,7 +62,7 @@ save "${datafilepath}\2012q4_n.dta", replace
 ****** DATA 2013
 
 use "${datafilepath}\2013q4.dta", clear
-br district_code district_name
+*br district_code district_name
 tostring district_code, replace
 
 replace district_code="2501" if district_code=="304"
@@ -79,7 +79,7 @@ save "${datafilepath}\2013q4_n.dta", replace
 ****** DATA 2014
 
 use "${datafilepath}\2014q4.dta", clear
-br district_code district_name
+*br district_code district_name
 tostring district_code, replace
 
 
@@ -101,7 +101,7 @@ save "${datafilepath}\2014q4_n.dta", replace
 ****** DATA 2015
 
 use "${datafilepath}\2015q4.dta", clear
-br district_code district_name
+*br district_code district_name
 tostring district_code, replace
 
 drop if district_name==""
@@ -112,7 +112,7 @@ save "${datafilepath}\2015q4_n.dta", replace
 
 ****** DATA 2016
 use "${datafilepath}\2016q4.dta", clear
-br district_code district_name
+*br district_code district_name
 tostring district_code, replace
 
 
@@ -122,8 +122,8 @@ save "${datafilepath}\2016q4_n.dta", replace
 
 ****** DATA 2017
 use "${datafilepath}\2017q4.dta", clear
-br district_code district_name
-distinct district_code district_name N
+*br district_code district_name
+
 tostring district_code, replace
 
 
@@ -134,7 +134,7 @@ save "${datafilepath}\2017q4_n.dta", replace
 ****** DATA 2018
 
 use "${datafilepath}\2018q4.dta", clear
-br district_code district_name amount_loan
+*br district_code district_name amount_loan
 tostring district_code, replace
 
 drop if district_name==""
@@ -146,12 +146,12 @@ save "${datafilepath}\2018q4_n.dta", replace
 ****** DATA 2019
 
 use "${datafilepath}\2019q4.dta", clear
-br district_name district_code amount_loan
-browse if missing(real(amount_loan))
+*br district_name district_code amount_loan
+*browse if missing(real(amount_loan))
 replace amount_loan="" if amount_loan=="-"
 destring amount_loan, replace 
 
-browse if missing(real(par_30))
+*browse if missing(real(par_30))
 replace par_30="" if par_30=="-"
 destring par_30, replace 
 
@@ -169,7 +169,6 @@ replace ratio_reschedule_loan="" if ratio_reschedule_loan=="-"
 
 destring reschedule_loan ratio_reschedule_loan, replace force
 *destring amount_loan, replace dpcomma ignore(", ")
-distinct district_code district_name N 
 
 replace district_code="2501" if district_code=="304"
 replace district_code="2502" if district_code=="309"
@@ -215,6 +214,7 @@ save "${datafilepath}\cma2011_19.dta", replace
 
 ************************************************************************************************************************************************************************
 ***********************
+/*
 * MERGING THE 2014-2017 CDB 
 
 /* FOR 2014 VILLAGE, COMMUNE, AND DISTRICT
@@ -407,7 +407,7 @@ drop if district_code=="." | land_areaC==0
 save "${datafilepath}\appended_CDB2014-19all", replace
 
 **************************************************************************
-
+*/
 use "${datafilepath}\cma2011_19.dta", clear
 drop if year<2014
 
