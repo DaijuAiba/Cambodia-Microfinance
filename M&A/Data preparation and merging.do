@@ -214,7 +214,7 @@ save "${datafilepath}\cma2011_19.dta", replace
 
 ************************************************************************************************************************************************************************
 ***********************
-/*
+
 * MERGING THE 2014-2017 CDB 
 
 /* FOR 2014 VILLAGE, COMMUNE, AND DISTRICT
@@ -224,190 +224,121 @@ I drop the pre-existing "year" variable from CDB2014_com(2) CDB2015_com(2) CDB20
 
 For 2018, I do separately because the merging within the village, commune, and district level has been already done
 */
-clear
-use "${datafilepath}\CDB2014_vill(1)", clear
-merge 1:1 villGis using "${datafilepath}\CDB2014_vill(2)", generate(merge)
-drop merge
-merge 1:1 villGis using "${datafilepath}\CDB2014_vill(3)", generate(merge)
-drop merge
-gen vvv=villGis
-tostring villGis, replace
-replace villGis="0"+villGis if vvv<10000000
-gen commGis=substr(villGis, 1,6)
-drop vvv
-br commGis villGis 
-
-destring commGis, replace
-merge m:1 commGis using "${datafilepath}\CDB2014_com(1)", generate(merge)
-drop merge
-merge m:1 commGis using "${datafilepath}\CDB2014_com(2)", generate(merge)
-drop merge
-gen ccc=commGis
-tostring commGis, replace
-replace commGis="0"+commGis if ccc<100000
-gen distGis=substr(commGis, 1,4)
-drop ccc
-
-destring distGis, replace
-merge m:1 distGis using "${datafilepath}\CDB2014_dist", generate(merge)
-drop merge
-gen ddd=distGis
-tostring distGis, replace
-replace distGis="0"+distGis if ddd<1000
-
-br distGis commGis villGis
-rename villGis VillGis
-rename commGis CommGis
-rename distGis DistGis
-gen year=2014
-save "${datafilepath}\merged_CDB2014all", replace
-
-
-/* FOR 2015, 2016, 2017, AND 2019 
-because 2018 is also a bit different, we make it separately
-*/
-
-
-
 
 clear
-foreach y in 2015 2016 2017 {
+foreach y in 2014  2015 2016 2017 2019{
 use "${datafilepath}\CDB`y'_vill(1)", clear
+cap rename villgis VillGis
+
 merge 1:1 VillGis using "${datafilepath}\CDB`y'_vill(2)", generate(merge)
 drop merge
 merge 1:1 VillGis using "${datafilepath}\CDB`y'_vill(3)", generate(merge)
 drop merge
 gen vvv=VillGis
 tostring VillGis, replace
-replace VillGis="0"+VillGis if vvv<10000000
+replace VillGis="0"+VillGis if vvv<10000000  // Or use strlen() function
 gen CommGis=substr(VillGis, 1,6)
 drop vvv
-br CommGis VillGis 
+*br CommGis VillGis 
 
 destring CommGis, replace
-merge m:1 CommGis using "${datafilepath}\CDB`y'_com(1)", generate(merge)
-drop merge
-merge m:1 CommGis using "${datafilepath}\CDB`y'_com(2)", generate(merge)
-drop merge
 gen ccc=CommGis
-tostring CommGis, replace
-replace CommGis="0"+CommGis if ccc<100000
+tostring CommGis, replace 
+replace CommGis="0"+CommGis if ccc<100000  // // Or use strlen() function
 gen DistGis=substr(CommGis, 1,4)
 drop ccc
 
 destring DistGis, replace
-merge m:1 DistGis using "${datafilepath}\CDB`y'_dist", generate(merge)
-drop merge
-gen ddd=DistGis
-tostring DistGis, replace
-replace DistGis="0"+DistGis if ddd<1000
+
+collapse (sum) v2 v3 v1317 v1318 v1319 v1320 v1321 v1322,by(DistGis)
+save "${datafilepath}\disrict_`y'(1)",replace
+
+
+
+use "${datafilepath}\CDB`y'_com(1)", clear
+
+gen ccc=CommGis
+tostring CommGis, replace
+replace CommGis="0"+CommGis if ccc<100000   // Or use strlen() function
+gen DistGis=substr(CommGis, 1,4)
+
+destring DistGis, replace
+
+
+collapse (sum) v2007,by(DistGis)
+merge 1:1  DistGis using "${datafilepath}\disrict_`y'(1)"
+
 gen year=`y'
 save "${datafilepath}\merged_CDB`y'all", replace
-clear
+
 }
 
 * FOR 2018
 clear
-use "${datafilepath}\CDB2018_vill", clear
-gen CommGis=substr(VillGis, 1,6)
+use "${datafilepath}\CDB2018_vill(1)", clear
+
+
+collapse (sum) v2 v3     ,by(DistGis)
+save "${datafilepath}\disrict_2018(1)",replace
+
+
+use "${datafilepath}\CDB2019_com(1)", clear
 destring CommGis, replace
-merge m:1 CommGis using "${datafilepath}\CDB2018_com", generate(merge)
-drop merge
 gen ccc=CommGis
-tostring CommGis, replace
-replace CommGis="0"+CommGis if ccc<100000
-drop ccc
-destring DistGis, replace
-merge m:1 DistGis using "${datafilepath}\CDB2018_dist", generate(merge)
-drop merge
-gen ddd=DistGis
-tostring DistGis, replace
-replace DistGis="0"+DistGis if ddd<1000
-br VillGis CommGis DistGis
-gen year=2018
-save "${datafilepath}\merged_CDB2018all", replace
-
-* For 2019
-
-clear
-use "${datafilepath}\CDB2019_vill(1)", clear
-merge 1:1 VillGis using "${datafilepath}\CDB2019_vill(2)", generate(merge)
-drop merge
-merge 1:1 VillGis using "${datafilepath}\CDB2019_vill(3)", generate(merge)
-drop merge
-gen vvv=VillGis
-tostring VillGis, replace
-replace VillGis="0"+VillGis if vvv<10000000
-gen CommGis=substr(VillGis, 1,6)
-drop vvv
-br CommGis VillGis 
-
-destring CommGis, replace
-merge m:1 CommGis using "${datafilepath}\CDB2019_com(1)", generate(merge)
-drop merge
-gen ccc=CommGis
-tostring CommGis, replace
-replace CommGis="0"+CommGis if ccc<100000
+tostring CommGis, replace 
+replace CommGis="0"+CommGis if ccc<100000  // // Or use strlen() function
 gen DistGis=substr(CommGis, 1,4)
 drop ccc
 
-destring DistGis, replace
-merge m:1 DistGis using "${datafilepath}\CDB2019_dist", generate(merge)
-drop merge
-gen ddd=DistGis
-tostring DistGis, replace
-replace DistGis="0"+DistGis if ddd<1000
 
-br DistGis CommGis VillGis
-gen year=2019
-save "${datafilepath}\merged_CDB2019all", replace
+collapse (sum) v2007,by(DistGis)
+merge 1:1  DistGis using "${datafilepath}\disrict_2018(1)"
+
+
+destring DistGis, replace
+gen year=2018
+save "${datafilepath}\merged_CDB2018all", replace
+
 
 
 
 clear
-append using merged_CDB2014all merged_CDB2015all merged_CDB2016all merged_CDB2017all merged_CDB2018all merged_CDB2019all, force
+foreach i of num 2014/2019{
+append using "${datafilepath}\merged_CDB`i'all" ,force
+
+}
 
 
 * DESCRIPTIVE STATISTICS
 
-codebook v2
-tab v2,m
 gen fem_tot=v2 if v2!=.
 
-codebook v3
-tab v3,m
 gen mal_tot=v3 if v3!=.
 
-gen pop_sizeV=fem_tot+mal_tot if v2!=. & v3!=. /* village level */
+gen pop_size=fem_tot+mal_tot if v2!=. & v3!=. /* village level */
 
 * Total land area of commune 
-gen land_areaC=v2007 if v2007!=.  /* Commune level  */
+gen land_area=v2007 if v2007!=.  /* Commune level  */
 
-egen pop_sizeC=sum(pop_sizeV), by(CommGis)
-
+gen pop_density=pop_size/land_area
 *gen pop_density=pop_sizeC/land_areaC
 *br pop_sizeV pop_sizeC pop_density
 
 * Disasters at village level
-gen stormF=v1317
-gen storm=v1318
-gen floodF=v1319
-gen flood=v1320
-gen droughtF=v1321
-gen drought=v1322
-
-collapse (sum) pop_sizeC land_areaC storm flood drought stormF floodF droughtF, by(DistGis year)
-
+rename  v1317 stormF
+rename v1318 storm
+rename v1319 floodF
+rename  v1320 flood
+rename v1321 droughtF
+rename v1322 drought
 
 rename DistGis district_code
-tab district_code,m
-drop if district_code=="." | land_areaC==0
-
+drop _merge
 
 save "${datafilepath}\appended_CDB2014-19all", replace
 
 **************************************************************************
-*/
+
 use "${datafilepath}\cma2011_19.dta", clear
 drop if year<2014
 
@@ -553,12 +484,14 @@ replace id_mfi=234	 if name=="YCP"
 tab id_mfi,m   /* 194 missing for both name and id_mfi */
 drop if id_mfi==.
 
+destring district_code,replace
+
 merge m:1 district_code year using  "${datafilepath}\appended_CDB2014-19all"
 drop if _merge!=3   
 drop _merge
 
 
-merge m:m id_mfi year using  "${datafilepath}\asset_liq_mfi-nbc"
+merge m:1 id_mfi year using  "${datafilepath}\asset_liq_mfi-nbc"
 drop if _merge!=3   
 drop _merge
 

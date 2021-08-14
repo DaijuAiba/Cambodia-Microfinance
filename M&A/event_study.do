@@ -64,7 +64,6 @@ gen log_borr_f=log(borr_f)
 
 
 
-
 gen MA0=0
 replace MA0=1 if id_mfi==201 & year>=2011
 replace MA0=1 if id_mfi==202 & year>=2016
@@ -213,10 +212,27 @@ label var A12 "5"
 */ 
 
 
+
+// Cutting outliers
+hist log_loan_borr
+hist log_borr
+
+foreach k in log_loan log_borr log_loan_borr{
+foreach i of num 2014/2019{
+sum `k' if year==`i', detail
+local up=r(p99)
+local low=r(p1) 
+replace  `k'=. if `k' >`up' & year==`i'
+replace  `k'=. if `k' <`low' & year==`i' 
+}
+}
+sum log_loan log_borr log_loan_borr borr_f
+
 local log_loan "Log of Loan Amount"
 local log_borr "Log of Number of Borrowers"
 local log_loan_borr "Log of Loan Size"
 local log_borr_f "Log of Female Borrowers Ratio"
+local borr_f "Female Borrowers Ratio"
 
 global diff " A1 A2 A3 A4 A5 A6 A7 A8 A9 " /* Omitting A1 to A6 as reference */
 * local diff " A1 A2 A3 A4 A5 A6 A7 A8 A9 A10 A11 A12"
@@ -226,11 +242,12 @@ local y log_loan log_borr log_loan_borr log_borr_f
 global cov  equity2_asset cash_asset fundingP
 
 
+global fixed_effect  i.id_mfi i.district_code##i.year
 cap mkdir "Graph_Event_Study"
 
 
 
-reg log_loan  A1 A2 A3 A4 A5 A6 A7 A8 A9   $cov i.id_mfi i.district_code##i.year, cluster(district_code) noconstant
+reg log_loan  A1 A2 A3 A4 A5 A6 A7 A8 A9   $cov  $fixed_effect , cluster(district_code) noconstant
 estimates store event1
 mat B1=e(b)
 
@@ -242,7 +259,7 @@ local k = mean
 
 coefplot event1, keep($diff) vertical   yline(`k') xline(4.5,lp(dash)lc(black)) xtitle("Event time (Year - Year of M&A)", size(small)) title("Log of Loan Amount") saving("Graph_Event_Study\event1", replace) 
 
-reg log_borr  A1 A2 A3 A4 A5 A6 A7 A8 A9  $cov i.id_mfi i.district_code##i.year, cluster(district_code) noconstant 
+reg log_borr  A1 A2 A3 A4 A5 A6 A7 A8 A9  $cov  $fixed_effect , cluster(district_code) noconstant 
 estimates store event2
 mat B2=e(b)
 
@@ -253,7 +270,7 @@ scalar mean=m[1,1]
 local k = mean
 coefplot event2, keep($diff) vertical yline(`k') xline(4.5,lp(dash)lc(black))xtitle("Event time (Year - Year of M&A)", size(small)) title("Log of Number of Borrowers") saving("Graph_Event_Study\event2", replace)
  
-reg log_loan_borr  A1 A2 A3 A4 A5 A6 A7 A8 A9  $cov i.id_mfi i.district_code##i.year, cluster(district_code) noconstant
+reg log_loan_borr  A1 A2 A3 A4 A5 A6 A7 A8 A9  $cov  $fixed_effect , cluster(district_code) noconstant
 estimates store event3
 mat B3=e(b)
 
@@ -265,7 +282,7 @@ local k = mean
 coefplot event3, keep($diff) vertical   yline(`k')xline(4.5,lp(dash)lc(black)) xtitle("Event time (Year - Year of M&A)", size(small)) title("Log of Loan Size") saving("Graph_Event_Study\event3", replace)
 
 
-reg borr_f  A1 A2 A3 A4 A5 A6 A7 A8 A9  $cov i.id_mfi i.district_code##i.year, cluster(district_code) noconstant
+reg borr_f  A1 A2 A3 A4 A5 A6 A7 A8 A9  $cov  $fixed_effect , cluster(district_code) noconstant
 estimates store event4
 mat B4=e(b)
 
@@ -286,6 +303,107 @@ graph export "Graph_Event_Study\EventStudy.png", replace
 hist event, saving(Graph_Event_Study\eventhist,replace)
 
 graph export "Graph_Event_Study\eventhist.png", replace
+
+
+hist year_ma
+
+
+gen EconDev=log(pop_density)
+
+
+//Interaction term with population density
+foreach i in A1 A2 A3 A4 A5 A6 A7 A8 A9{
+	
+	gen `i'_E=`i'*EconDev
+	
+}
+
+label var A1_E "-4"
+label var A2_E "-3"
+label var A3_E "-2"
+label var A4_E "-1"
+label var A5_E "0"
+label var A6_E "1"
+label var A7_E "2"
+label var A8_E "3"
+label var A9_E "4"
+
+global coeff  A1_E A2_E A3_E A4_E A4_E A5_E A6_E A7_E A8_E A9_E
+ 
+ global var A1 A2 A3 A4 A5 A6 A7 A8 A9  A1_E A2_E A3_E A4_E A4_E A5_E A6_E A7_E A8_E A9_E  
+
+global cov  equity2_asset cash_asset fundingP
+global fixed_effect  i.id_mfi i.district_code##i.year
+
+
+
+ reg log_loan  $var $cov $fixed_effect , cluster(district_code) noconstant
+estimates store event5
+mat B1=e(b)
+
+scalar b1=B1["y1","A1_E"]
+scalar b2=B1["y1","A2_E"]
+scalar b3=B1["y1","A3_E"]
+scalar b4=B1["y1","A4_E"]
+scalar mean=(b1 + b2+ b3+ b4)/4
+local k = mean
+
+coefplot event5, keep($coeff) vertical   yline(`k') xline(4.5,lp(dash)lc(black)) xtitle("Event time (Year - Year of M&A)", size(small)) title("Log of Loan Amount") saving("Graph_Event_Study\event5", replace) 
+
+
+ 
+reg log_borr $var   $cov  $fixed_effect , cluster(district_code) noconstant
+estimates store event6
+mat B1=e(b)
+
+scalar b1=B1["y1","A1_E"]
+scalar b2=B1["y1","A2_E"]
+scalar b3=B1["y1","A3_E"]
+scalar b4=B1["y1","A4_E"]
+scalar mean=(b1 + b2+ b3+ b4)/4
+local k = mean
+
+coefplot event6, keep($coeff) vertical   yline(`k') xline(4.5,lp(dash)lc(black)) xtitle("Event time (Year - Year of M&A)", size(small)) title("Log of Number of Borrowers") saving("Graph_Event_Study\event6", replace) 
+
+
+
+
+ 
+reg log_loan_borr $var    $cov  $fixed_effect , cluster(district_code) noconstant
+estimates store event7
+mat B1=e(b)
+scalar b1=B1["y1","A1_E"]
+scalar b2=B1["y1","A2_E"]
+scalar b3=B1["y1","A3_E"]
+scalar b4=B1["y1","A4_E"]
+scalar mean=(b1 + b2+ b3+ b4)/4
+local k = mean
+
+coefplot event7, keep($coeff) vertical   yline(`k') xline(4.5,lp(dash)lc(black)) xtitle("Event time (Year - Year of M&A)", size(small)) title("Log of Loan Size") saving("Graph_Event_Study\event7", replace) 
+
+ 
+reg borr_f $var     $cov  $fixed_effect , cluster(district_code) noconstant
+estimates store event8
+mat B1=e(b)
+
+scalar b1=B1["y1","A1_E"]
+scalar b2=B1["y1","A2_E"]
+scalar b3=B1["y1","A3_E"]
+scalar b4=B1["y1","A4_E"]
+scalar mean=(b1 + b2+ b3+ b4)/4
+local k = mean
+
+coefplot event8, keep($coeff) vertical   yline(`k') xline(4.5,lp(dash)lc(black)) xtitle("Event time (Year - Year of M&A)", size(small)) title("Female Borrowers Ratio") saving("Graph_Event_Study\event8", replace) 
+
+
+
+graph combine "Graph_Event_Study\event5.gph" "Graph_Event_Study\event6.gph" "Graph_Event_Study\event7.gph" "Graph_Event_Study\event8.gph", saving(Graph_Event_Study\EventStudy,replace)
+
+graph export "Graph_Event_Study\EventStudy2.png", replace
+
+
+ 
+sum log_loan log_borr log_loan_borr log_borr_f  equity2_asset cash_asset fundingP EconDev
 
 
 
