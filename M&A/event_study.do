@@ -63,105 +63,14 @@ gen log_borr_f=log(borr_f)
 
 
 
-
-gen MA0=0
-replace MA0=1 if id_mfi==201 & year>=2011
-replace MA0=1 if id_mfi==202 & year>=2016
-replace MA0=1 if id_mfi==203 & year>=2015
-replace MA0=1 if id_mfi==204 & year>=2010
-replace MA0=1 if id_mfi==205 & year>=2018
-replace MA0=1 if id_mfi==206 & year>=2012
-replace MA0=1 if id_mfi==210 & year>=2018
-replace MA0=1 if id_mfi==212 & year>=2019
-
-replace MA0=1 if id_mfi==214 & year>=2017
-replace MA0=1 if id_mfi==216 & year>=2009
-replace MA0=1 if id_mfi==217 & year>=2016
-
-replace MA0=1 if id_mfi==218 & year>=2016
-replace MA0=1 if id_mfi==221 & year>=2018
-
-replace MA0=1 if id_mfi==222 & year>=2014
-
-replace MA0=1 if id_mfi==223 & year>=2014
-replace MA0=1 if id_mfi==224 & year>=2017
-
-replace MA0=1 if id_mfi==226 & year>=2018
-replace MA0=1 if id_mfi==228 & year>=2015
-
-replace MA0=1 if id_mfi==231 & year>=2017
-replace MA0=1 if id_mfi==242 & year>=2019
-replace MA0=1 if id_mfi==243 & year>=2013
-
-replace MA0=1 if id_mfi==245 & year>=2017
-
-replace MA0=1 if id_mfi==248 & year>=2013
-
-replace MA0=1 if id_mfi==252 & year>=2015
-replace MA0=1 if id_mfi==256 & year>=2017
-replace MA0=1 if id_mfi==259 & year>=2017
-replace MA0=1 if id_mfi==260 & year>=2016
-replace MA0=1 if id_mfi==269 & year>=2011
-replace MA0=1 if id_mfi==271 & year>=2015
-
-replace MA0=1 if id_mfi==278 & year>=2016
-replace MA0=1 if id_mfi==279 & year>=2016
-replace MA0=1 if id_mfi==280 & year>=2015
-replace MA0=1 if id_mfi==285 & year>=2016
-replace MA0=1 if id_mfi==291 & year>=2015
-replace MA0=1 if id_mfi==301 & year>=2017
+merge m:1 id_mfi using "${datafilepath}\MA.dta"
 
 
 
-gen year_ma=.
 
 
-replace year_ma=2011 if id_mfi==201
-replace year_ma=2016 if id_mfi==202 
-replace year_ma=2015 if id_mfi==203 
-replace year_ma=2010 if id_mfi==204 
-replace year_ma=2018 if id_mfi==205 
-replace year_ma=2012 if id_mfi==206 
-replace year_ma=2018 if id_mfi==210 
-replace year_ma=2019 if id_mfi==212 
-
-replace year_ma=2017 if id_mfi==214 
-replace year_ma=2009 if id_mfi==216 
-replace year_ma=2016 if id_mfi==217 
-
-replace year_ma=2016 if id_mfi==218 
-replace year_ma=2018 if id_mfi==221 
-
-replace year_ma=2014 if id_mfi==222 
-
-replace year_ma=2014 if id_mfi==223 
-replace year_ma=2017 if id_mfi==224 
-
-replace year_ma=2018 if id_mfi==226 
-replace year_ma=2015 if id_mfi==228
-
-replace year_ma=2017 if id_mfi==231
-replace year_ma=2019 if id_mfi==242
-replace year_ma=2013 if id_mfi==243 
-
-replace year_ma=2017 if id_mfi==245 
-
-replace year_ma=2013 if id_mfi==248 
-
-replace year_ma=2015 if id_mfi==252
-replace year_ma=2017 if id_mfi==256 
-replace year_ma=2017 if id_mfi==259 
-replace year_ma=2016 if id_mfi==260 
-replace year_ma=2011 if id_mfi==269 
-replace year_ma=2015 if id_mfi==271 
-
-replace year_ma=2016 if id_mfi==278 
-replace year_ma=2016 if id_mfi==279 
-replace year_ma=2015 if id_mfi==280
-replace year_ma=2016 if id_mfi==285 
-replace year_ma=2015 if id_mfi==291 
-replace year_ma=2017 if id_mfi==301 
-
+hist year_ma,freq
+graph export "Graph_Event_Study\MA_year.png",replace
 tab year,m
 tab year_ma,m  /* Year of Merger and Acquisition */
 
@@ -210,6 +119,7 @@ label var A10 "3"
 label var A11 "4"
 label var A12 "5"
 */ 
+
 
 
 

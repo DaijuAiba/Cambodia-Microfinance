@@ -498,3 +498,12 @@ drop _merge
 save "${datafilepath}\cleaned_merged2011_19.dta", replace
 
 
+//==================
+. import excel "C:\Users\a0841\OneDrive\ドキュメント\GitHub\Cambodia-Microfinance\M&A\Data\MFI History_as of 20210511.xlsx", sheet("Website") firstrow clear
+
+rename YearofMA  year_ma
+rename ID id_mfi  
+drop if id_mfi==.
+keep id_mfi year_ma
+
+save "${datafilepath}\MA.dta",replace 
