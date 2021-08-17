@@ -504,6 +504,7 @@ save "${datafilepath}\cleaned_merged2011_19.dta", replace
 rename YearofMA  year_ma
 rename ID id_mfi  
 drop if id_mfi==.
+tab year_ma
 keep id_mfi year_ma
 
 save "${datafilepath}\MA.dta",replace 

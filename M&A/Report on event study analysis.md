@@ -9,7 +9,7 @@ August 2021
 <br>
 
 ## 1. Introduction
-In recent years, microfinance insitutions (MFIs) have palyed an important role in poverty allevaition thtough financial inclusion for developing countries. Along with the recent prosperity of MFIs, there are also a flood of capital inflow into them. The capital inflow takes various forms, such as debt and equity investment, and there exsit a variety of investers and lenders. According to El-zoghbi (2011) and Reille et al. (2011), those investors could be categorized into:
+In recent years, microfinance insitutions (MFIs) have palyed an important role in poverty allevaition thtough financial inclusion for developing countries. Along with the recent prosperity of MFIs, there are also a flood of capital inflow into them. The capital inflow takes various forms, such as debt and equity investment, and there exsit a variety of investers and lenders. According to El-Zoghbi (2011) and Reille et al. (2011), those investors could be categorized into:
 - Individuals
 - Retail investors (Such as Oikocredit (Netherlands), responsAbility (Switzerland)), 
 	- Retail investors represent 16 percent of the total stock of cross-border funding (Rellie et al., 2011).
@@ -26,22 +26,27 @@ In this study, we aim to empirically estimate the effect of M&A cases of MFIs on
 
 
 <br>
+<br>
 
-## 2. Literature of M&A 
-### 2.1 
-Before 2000, the microfinance sector includes about 370,651 clients in 2001, representing 17 percent of all households and 29.3 million USD loans outstanding. The major service providers include ACLEDA, PRASAC, EMT, CRS/TCP, and CCB. The market leaders, ACLEDA and EMT, represent 36 and 64 percent of clients and loans outstanding. The National Bank of Cambodia made the registration and licensing of entities providing credit and savings activities. These include preparing the law on Banking and Financial Institutions on November 18, 1999, and the statute on the licensing of Specialized Banking Institutions (SBIs) and Microfinance Institutions (MFIs).[^1]  
-
-One example of M&A cases of MFIs in Cambodia can be the merging of Thaneakea Phum Project (TPP). TPP is a village banking project initiated by Catholic Relief Services’ (CRS) Cambodia program in 1994 and financed by McKnight Foundation, USAID, Development Capital, and CRS private funds. The project aimed at increasing access to rural financial services for the poor, particularly women and strengthening the institutional capacity and policy awareness of NGOs and the government in microfinance activities. The target areas were eight provinces (158 communes) through six local NGOs and two CRS direct retail branch offices.  
-
-Major challenges of MFIs in Cambodia include the exclusion of the poorest of the poor from the primary target of the institutions, difficulty in reaching the poorest of the poor in the remote rural areas, the high competitive interest rates offered by the MFIs in Cambodia, managing risks of their operations, and the rapidly increasing multiple lending taken by borrowers (Tahir and Tahrim, 2015).  
-
-Driving factors for the effort to merge TPP’s operations into a regulated MFI include providing sustainable and effective services to the poor in larger numbers and expanding the service into under-served areas, achieving economies of scale; in terms of consolidating planning and management information and financial administrations systems, aiming to be a best MFI in Cambodia, improving the viability and sustainability of financial service delivery to the poor, and increasing job security. 
-
+## 2. The Microfinance Sector and M&A
+### 2.1  Literature of M&A in Microfinace  Institutions
+There have been a strand of literature of M&A in a banking sector (Asimakopoulos et al, 2013).   
 
 <br>
 
-### 2.2 M&A in Cambodia
-In Cambodia, there have been 81 microfinance institutions, including six microfinance deposit-taking institutions by the end of 2020.   The National Bank of Cambodia (NBC) put several regulations to facilitate and monitor the operations of microfinance institutions and other financial institutions. Also, NBC has been revising several of such regulations recently. Some of these revisions include the modifications in the minimum capital requirement, independency of management, net-worth computation, liquidity coverage ratio, solvency ratio, capital buffer, and interest rate ceilings, among others.  
+
+### 2.2 Microfinance Institutions and M&A in Cambodia
+In Cambodia, there have been 81 microfinance institutions, including six microfinance deposit-taking institutions by the end of 2020. The National Bank of Cambodia (NBC) put several regulations to facilitate and monitor the operations of microfinance institutions and other financial institutions. Also, NBC has been revising several of such regulations recently. Some of these revisions include the modifications in the minimum capital requirement, independency of management, net-worth computation, liquidity coverage ratio, solvency ratio, capital buffer, and interest rate ceilings, among others.   
+
+Before 2000, the microfinance sector includes about 370,651 clients in 2001, representing 17 percent of all households and 29.3 million USD loans outstanding. The major service providers include ACLEDA, PRASAC, EMT, CRS/TCP, and CCB. The market leaders, ACLEDA and EMT, represent 36 and 64 percent of clients and loans outstanding. The National Bank of Cambodia made the registration and licensing of entities providing credit and savings activities. These include preparing the law on Banking and Financial Institutions on November 18, 1999, and the statute on the licensing of Specialized Banking Institutions (SBIs) and Microfinance Institutions (MFIs).[^1]  
+
+One example of old M&A cases of MFIs in Cambodia can be the merging of Thaneakea Phum Project (TPP). TPP is a village banking project initiated by Catholic Relief Services’ (CRS) Cambodia program in 1994 and financed by McKnight Foundation, USAID, Development Capital, and CRS private funds. The project aimed at increasing access to rural financial services for the poor, particularly women and strengthening the institutional capacity and policy awareness of NGOs and the government in microfinance activities. The target areas were eight provinces (158 communes) through six local NGOs and two CRS direct retail branch offices.  
+
+In the meantime, most of recent M&A cases are cross-border M&A by foreign banks or foreign microfinance investment vehcle. For example, in 2014, Sathapana Microfinance, which was establised in 2000s and one of the largest MFIs in Cambodia, were aquisited by Maruhan Japan Bank, which was a Japanese-owned commercial banks. In 2016, Sathapana  Microfinance was merged with Maruhan Japan Bank, and transformed into a commercial bank.  In a other case, in 2018, AMK was aquisitited by Shanghai Commercial & Savings Bank, which is currently based in Taiwan.[^2] In 2018, SAMIC Microfinance was aquisited by NongHyup Bank in South Korea, and changed its name to NongHyup Finance. 
+
+Major challenges of MFIs in Cambodia include the exclusion of the poorest of the poor from the primary target of the institutions, difficulty in reaching the poorest of the poor in the remote rural areas, the high competitive interest rates offered by the MFIs in Cambodia, managing risks of their operations, and the rapidly increasing multiple lending taken by borrowers (Tahir and Tahrim, 2015). M&A could help MFIs improve their operation by achieving the economies of scale and scope, and by consolidating planning and management information and financial administrations systems. However, the recent M&A cases are mainly cross-border M&A, aiming to enter the Cambodian financial market. Thus, there are concerns of mission drift by changes in board structure and management schemes, and inefficiency could occur due to cultural difference.
+
+
 
 <br>
 
@@ -78,16 +83,43 @@ where $PopDensity_{jt}$ is an indicator of economic development in district $j$ 
 
 <br><br>
 ### 2.2 Data and Variables
-For the estimation, we constrcuted the dataset from three sources. Firstly, the data relating to MFI lending is extracted from the CMA-NIX database. Secondly, the data represeting MFI's financial condition is extracted from the NBC Supervision Annual Report. Thirdly, we also collected the data of mergers and aquisitions in the Cambodian MFI sector via website of each MFI and local newspapers. 
+For the estimation, we constrcuted the dataset from three sources. Firstly, the data relating to MFI lending is extracted from the CMA-NIX database. Secondly, the data represeting MFI's financial condition is extracted from the NBC Supervision Annual Report. Thirdly, we also collected the data of mergers and aquisitions in the Cambodian MFI sector via website of each MFI and local newspapers. The summary statistics of variables used for the regression analysis are presented in Table 1. 
 
-The variables representing MFI lending behavior are the loan amount, total number of borrowers, loan size (ratio of the loan amount to the total number of borrowers), and ratio of female to the total number of borrowers.  
+MFI's lending data are available at MFI-district pair in CMA-NIX database on a quarterly basis. From this database, we construct  the panel dataset at MFI-district-pair level. The dataset include variables representing MFI lending behavior are the loan amount, total number of borrowers, loan size (ratio of the loan amount to the total number of borrowers), and ratio of female to the total number of borrowers. The variables have variation across 194 districts and across 80 MFIs from 2014Q4 to 2019Q4. For the compatibility with other dataset, we reduce the dataset of CMA-NIX to a yearly basis.  
 
-The treatment variable represent M&A cases of MFIs. We create a dummy variable taking a value of 1 for MFIs if their shares are aquisitied by other shareholders, based on MFIs’ webpages and annual reports.  
+NBC Supervisory Annual Report contains data of income statements and blance sheets of each MFI. From this data source, we extract the data of MFI's financial conditions, such as capital ratio, funding prices, and cash-to-asset ratio.  
+
+We also combine the data of region-specific variable. In Cambodia, there is Commune Database, which is managed by National Insitution of Statistics, and which covers the village-level, commune-level, and district-level information, such as population, size of total land areas, and infrastructure development. We extract the data of population density for a proxy of economic development of districts. 
+
+
 
 <br>
 
 <h3 align="center">
-Table 1: M&A cases by years (2009-2019)</h3>
+Table 1: Descriptive statistics of variable used for regression</h3>
+
+| Variable |        Obs   |     Mean  |  Std. dev.   |
+|----------|---------------:|----------:|--------------:|
+ |   Log. Loan Amount (Millions of KHR) |     19,196 |   6.48|    2.49| 
+|  Log. Number of Borrowers |     19,329  |  4.30 |   2.59  | 
+|Log. Loan Size per Borrower |     19,095  |  2.11 |   1.25 | 
+| Female Borrower Ratio |       18,434  |   0.63 |   0.28 |
+|Capital Ratio |     59,888   | 0.40 |  0.32  |
+ | Cash-to-Asset Ratio |     59,888   |  0.16   | 0.16 |
+  |  Funding price |     59,691   | 0.06   | 0.21 |
+   |  Log. Population Density |     60,085   | 0.03   | 1.73 | 
+
+
+<br>
+The treatment variable represent M&A cases of MFIs. We create a dummy variable taking a value of 1 for MFIs if their shares are aquisitied by other shareholders, based on MFIs’ webpages and annual reports. Table 2 presents the number of M&A cases by years.
+
+
+<br>
+<br>
+
+
+<h3 align="center">
+Table 2: M&A cases by years (2010-2019)</h3>
 
 |Year| Number of Cases | Percent. |
 | ---: |:---:| ---: |
@@ -103,12 +135,13 @@ Table 1: M&A cases by years (2009-2019)</h3>
 <br><br>
 
 ## 4. Results 
-Table 1 shows the results of the estimation. Firstly, the results of estimation show the parallel trends between treatment and control groups before the M&A cases, although there were statistically significant decline one year before the M&S cases for the female borrower ratio. It suggests that the changes in the trend of MFI lending after the M&A cases are likely to be interpreted as causal impacts.  
+Table 1 shows the results of the estimation. Firstly, the results of estimation show the parallel trends between treatment and control groups before the M&A cases, for logarithm of loan amounts, and logarithm of loan sizes  although there were statistically significant decline one year before the M&S cases for the female borrower ratio. It suggests that the changes in the trend of MFI lending after the M&A cases are likely to be interpreted as causal impacts.  
 
 The results show that, due to M&A cases, amounts of outstanding loan have increased on average. In four-year span, The increases in outstanding loan was 50%-100%, suggesting that M&A cases contributed to the expansion of loan portfolio of MFIs in Cambodia.
 
 
 
+<br>
 
 <h3 align="center">
 Figure 1: Estimated ATE Effects</h3>
@@ -137,7 +170,11 @@ Figure 2: Coefficients of Interaction terms of Population Density</h3>
 
 
 ## Refenrence 
-- Tahir, Izah Mohd, and Tahrim, Siti Nurzahira Che. 2015. Efficiency and Productivity Analysis of Microfinance Institutions in Cambodia: A DEA Approach, International Review of Business Research Papers, 11, 1, 25-42.
-
+- Asimakopoulos, I., & Athanasoglou, P. P. (2013). Revisiting the merger and acquisition performance of European banks. International review of financial analysis, 29, 237-249.
+- Mayada El-Zoghbi, Barbara Gähwiler, and Kate Lauer (2011) Cross-border Funding of Microfinance, CGAP Focus Note No.70.
+- Reille, X., Rozas, D., & Forster, S. (2011), Foreign capital investment in microfinance, Reassessing financial and social returns, CGAP Focus Note No.71.
+- Tahir, Izah Mohd, and Tahrim, Siti Nurzahira Che. (2015). Efficiency and Productivity Analysis of Microfinance Institutions in Cambodia: A DEA Approach, International Review of Business Research Papers, 11, 1, 25-42.
 
 [^1]: See https://www.crs.org/sites/default/files/tools-research/mergers-in-microfinance.pdf
+
+[^2]: https://www.phnompenhpost.com/business/new-mfi-opens-kingdom-1m

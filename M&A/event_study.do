@@ -313,7 +313,7 @@ graph export "Graph_Event_Study\EventStudy2.png", replace
 
 
  
-sum log_loan log_borr log_loan_borr log_borr_f  equity2_asset cash_asset fundingP EconDev
+sum log_loan log_borr log_loan_borr borr_f  equity2_asset cash_asset fundingP EconDev
 
 
 
