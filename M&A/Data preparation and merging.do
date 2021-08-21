@@ -339,12 +339,13 @@ save "${datafilepath}\appended_CDB2014-19all", replace
 
 **************************************************************************
 
-use "${datafilepath}\cma2011_19.dta", clear
+use "${datafilepath}\CMAdata.dta", clear
 drop if year<2014
 
 * Assigning IDs for MFIs
 tab name,m
 
+/*
 gen id_mfi=.
 
 replace id_mfi=1	 if name=="ACLEDA"
@@ -485,6 +486,9 @@ tab id_mfi,m   /* 194 missing for both name and id_mfi */
 drop if id_mfi==.
 
 destring district_code,replace
+*/
+
+rename MFI_id id_mfi
 
 merge m:1 district_code year using  "${datafilepath}\appended_CDB2014-19all"
 drop if _merge!=3   
