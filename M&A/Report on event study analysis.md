@@ -75,8 +75,10 @@ In Microfinance sectors, there have been an increasing number of M&A cases over 
 
 $treat_{ik}$ is a dummy variable taking one if the period relative to first treated period is the same value as k; 0 otherwise, and it also takes 0 for all never-treated groups. Estimation is performed with standard errors clustered at a district level.  
 
- We also include the time-variant district-level fixed effect, $\nu_{jt}$. Khwaja and Mian (2008) developed the model to include the time-variant district-specific effect. This term is supposed to control all the variations caused by demand shocks, such as disasters at the district, and economic development. 
+ We also include the time-variant district-level fixed effect, $\nu_{jt}$. Khwaja and Mian (2008) developed the model to include the time-variant district-specific effect. This term is supposed to control all the variations caused by demand shocks, such as disasters at the district, and economic development.  
 
+ To confirm whether the data supports the parallel trends assumption in DID estimation, we also examine whether the control and treated groups have statistically the same trends before treatment. The coefficients $\beta_{k}$ for $k<0$ capture the trends of difference between treatment and control groups before the treatment. The parallel trend assumption holds if $\beta_{k} - \Sigma_{k=-4}^{-1}\beta_k$ statistically equals zero for $k<0$. 
+ 
 Furthermore, we also examine the heterogenious impact of the M&A cases. The M&A cases could drive MFIs from a poverty alleviation mission, and could increase loan provision to developed areas. To examine such changes in MFI lending behavior, we include the interaction terms of the treatment dummy with indicators of economic development. Specifically, we extend the model to the following specification.  
 
 
@@ -87,7 +89,7 @@ Furthermore, we also examine the heterogenious impact of the M&A cases. The M&A 
 <img src="https://render.githubusercontent.com/render/math?math=y_{ijt} = \Sigma_{k=-4}^{-1} \beta_{k} \times treat_{ik}%2B \Sigma_{k=0}^{4} \beta_{k} \times treat_{ik} %2B  \Sigma_{k=-4}^{-1} \delta_{k} \times treat_{ik} \times  PopDensity_{kt} %2B \Sigma_{k=0}^{4} \delta_{k} \times treat_{ik} \times  PopDensity_{jt} %2B \gamma X_{it} %2B \mu_i %2B \nu_{jt} %2B \epsilon_{ijt}"><br>
 <br>
 
-where $PopDensity_{jt}$ is an indicator of economic development in district $j$ at time $t$. Coefficient of interaction term $\delta_{k}$ captures a heterogeneity of the impact of M&A. If MFIs increase the loan provision to the developed areas relatively, we expect that $\delta_{k}>0$.
+where $PopDensity_{jt}$ is an indicator of economic development in district $j$ at time $t$. Coefficient of interaction term $\delta_{k}$ captures a heterogeneity of the impact of M&A. If MFIs increase the loan provision to the developed areas relatively, we expect that $\delta_{k}>0$ for $k>0$ .
 
 <br><br>
 
@@ -105,10 +107,10 @@ We also combine the data of region-specific variables. In Cambodia, there is Com
 <br>
 
 <h3 align="center">
-Table 1: Descriptive statistics of variable used for regression</h3>
+Table 1: Descriptive statistics of variable used for regression
 
 | Variable |        Obs   |     Mean  |  Std. dev.   |
-|----------|---------------:|----------:|--------------:|
+|:----------|---------------:|----------:|--------------:|
  |   Log. Loan Amount (Millions of KHR) |     19,196 |   6.48|    2.49| 
 |  Log. Number of Borrowers |     19,329  |  4.30 |   2.59  | 
 |Log. Loan Size per Borrower |     19,095  |  2.11 |   1.25 | 
@@ -117,6 +119,7 @@ Table 1: Descriptive statistics of variable used for regression</h3>
  | Cash-to-Asset Ratio |     59,888   |  0.16   | 0.16 |
   |  Funding price |     59,691   | 0.06   | 0.21 |
    |  Log. Population Density |     60,085   | 0.03   | 1.73 | 
+</h3>
 
 
 <br>
@@ -128,7 +131,7 @@ The treatment variable represents M&A cases of MFIs. We create a dummy variable 
 
 
 <h3 align="center">
-Table 2: M&A cases by years (2010-2019)</h3>
+Table 2: M&A cases by years (2010-2019)
 
 |Year| Number of Cases | Percent. |
 | ---: |:---:| ---: |
@@ -139,7 +142,7 @@ Table 2: M&A cases by years (2010-2019)</h3>
 |2017 | 6     |  23.08  |    
 |2018   |6|23.08 |     
  |2019 | 2       | 7.69|     
-
+</h3>
 
 <br><br>
 
@@ -183,6 +186,8 @@ Figure 2: Coefficients of Interaction terms of Population Density</h3>
 - Mayada El-Zoghbi, Barbara Gähwiler, and Kate Lauer (2011) Cross-border Funding of Microfinance, CGAP Focus Note No.70.
 - Reille, X., Rozas, D., & Forster, S. (2011), Foreign capital investment in microfinance, Reassessing financial and social returns, CGAP Focus Note No.71.
 - Tahir, Izah Mohd, and Tahrim, Siti Nurzahira Che. (2015). Efficiency and Productivity Analysis of Microfinance Institutions in Cambodia: A DEA Approach, International Review of Business Research Papers, 11, 1, 25-42.
+
+
 
 [^1]: See https://www.crs.org/sites/default/files/tools-research/mergers-in-microfinance.pdf
 
