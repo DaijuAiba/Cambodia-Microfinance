@@ -1,0 +1,11 @@
+\begin{tabular}{lrrr}
+\hline
+ Variable                                    &   Observations &     Mean &   Std. dev. \\
+\hline
+ Log. Loan Amount (Millions of USD)          &          20718 &       -0 &           1 \\
+ Log. Number of Borrowers                    &          19976 &       -0 &           1 \\
+ Log. Loan Size per Borroer                  &          19834 &       -0 &           1 \\
+ Ratio of Female Borrower to Total Borrowers &          18823 &       -0 &           1 \\
+ Populatuin Density                          &           1194 &        0 &           0 \\
+\hline
+\end{tabular}
