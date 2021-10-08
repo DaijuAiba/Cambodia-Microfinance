@@ -1,4 +1,4 @@
-This is e-pTeX, Version 3.141592653-p3.9.0-210218-2.6 (utf8.sjis) (TeX Live 2021/W32TeX) (preloaded format=platex 2021.8.21)  8 SEP 2021 16:16
+This is e-pTeX, Version 3.141592653-p3.9.0-210218-2.6 (utf8.sjis) (TeX Live 2021/W32TeX) (preloaded format=platex 2021.8.21)  21 SEP 2021 11:43
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -291,4 +291,4 @@ Here is how much of TeX's memory you used:
  929 hyphenation exceptions out of 8191
  71i,11n,74p,975b,457s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on Event_Study.dvi (8 pages, 24924 bytes).
+Output written on Event_Study.dvi (8 pages, 24920 bytes).
