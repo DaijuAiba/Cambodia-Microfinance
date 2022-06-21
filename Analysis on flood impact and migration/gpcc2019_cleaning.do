@@ -122,7 +122,7 @@ gen age_marriage=p08_marriage_age if p08_marriage_age<990
 
 tab p13_duration_stay,m
 tab p13_duration_stay,m nolabel
-gen moved=(p13_duration_stay<=99) if p14_migration!=99
+gen moved=(p13_duration_stay<=10) if p14_migration!=99
 tab moved,m
 gen duration_stay=p13_duration_stay if p13_duration_stay<=95
 tab p14_migration,m
@@ -156,7 +156,7 @@ gen street_mkt=(p19_occupation== 541) if p19_occupation!=. /*  Street market sal
 gen frame_build=(p19_occupation==711) if p19_occupation!=. /* Building frame and related trades worker */
 gen agri_forest=(p19_occupation==921) if p19_occupation!=. /* agricultural, forestry and fishery laborers */ 
 gen client_info=(p19_occupation==422) if p19_occupation!=. /* client information workers */
-gen other_occ=(p19_occupation!=611 & p19_occupation!=631 & p19_occupation!=755 & p19_occupation!=548 & p19_occupation!=931 & p19_occupation!=541 & p19_occupation!=711 & p19_occupation!=921 & p19_occupation!=422 & p19_occupation!=999 & p19_occupation!=. )
+gen other_occ=(p19_occupation!=611 & p19_occupation!=631 & p19_occupation!=755 & p19_occupation!=548 & p19_occupation!=931 & p19_occupation!=541 & p19_occupation!=711 & p19_occupation!=921 & p19_occupation!=422 & p19_occupation!=999) if p19_occupation!=.
 
 sum mkt_gard_crop subsistence_crop garment shop_salespersons mining street_mkt frame_build agri_forest client_info other_occ
 
