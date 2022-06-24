@@ -31,10 +31,12 @@ sum no_floodF GrantUSD loan_status no_familiesV Ratio_LoanTOhhs Ratio_Loan_staTO
 local covars female ever_married low_secMore employed age age2 impairment 
 local depvar moved mig_workTransfer mig_empSearch mig_marriage mig_famMoved mig_lostLandHome mig_naturalCal mig_otherReason
 foreach y in `depvar' {
-reg `y' exposedD Ratio_LoanTOhhs expDXloanR `covars' if age>18, cluster(comm_code)
+reg `y' exposedD Ratio_LoanTOhhs expDXloanR  `covars' if age>18, cluster(comm_code)
 estimates store `y'	
 }
 estimates table `depvar', keep(exposedD Ratio_LoanTOhhs expDXloanR `covars') b(%9.5f) se(%9.5f) stats(r2_a N)
+
+*expDXloanR
 
 **********************************************************************
 
@@ -46,6 +48,8 @@ estimates store `y'
 }
 estimates table `depvar', keep(exposedR Ratio_LoanTOhhs expRXloanR `covars') b(%9.4f) se(%9.4f) stats(r2_a N)
 
+* expRXloanR
+
 ************************************************************************
 
 local covars female ever_married low_secMore employed age age2 impairment 
@@ -55,6 +59,8 @@ qui reg `y' exposedR2 Ratio_LoanTOhhs expR2XloanR `covars' if age>18, cluster(co
 estimates store `y'
 }
 estimates table `depvar', keep(exposedR2 Ratio_LoanTOhhs expR2XloanR `covars') b(%9.4f) se(%9.4f) stats(r2_a N)
+
+* expR2XloanR
 
 /* Dummy Loan   */
 *******************************************************************
@@ -66,6 +72,8 @@ estimates store `y'
 }
 estimates table `depvar', keep(exposedD loan_status expDXloanD `covars') b(%9.5f) se(%9.5f) stats(r2_a N)
 
+* expDXloanD
+
 local covars female ever_married low_secMore employed age age2 impairment 
 local depvar moved mig_workTransfer mig_empSearch mig_marriage mig_famMoved mig_lostLandHome mig_naturalCal mig_otherReason
 foreach y in `depvar' {
@@ -74,14 +82,18 @@ estimates store `y'
 }
 estimates table `depvar', keep(exposedR loan_status expRXloanD `covars') b(%9.4f) se(%9.4f) stats(r2_a N)
 
+* expRXloanD
 
 local covars female ever_married low_secMore employed age age2 impairment 
 local depvar moved mig_workTransfer mig_empSearch mig_marriage mig_famMoved mig_lostLandHome mig_naturalCal mig_otherReason
 foreach y in `depvar' {
-qui reg `y' exposedR2 loan_status expR2XloanD `covars' if age>18, cluster(comm_code)
+qui reg `y' exposedR2 loan_status expR2XloanD  `covars' if age>18, cluster(comm_code)
 estimates store `y'
 }
 estimates table `depvar', keep(exposedR2 loan_status expR2XloanD `covars') b(%9.4f) se(%9.4f) stats(r2_a N)
+
+* expR2XloanD
+
 *******************************************************************
 
 
@@ -119,20 +131,22 @@ gen expR2XloanD=exposedR2*loan_status
 local covars female ever_married low_secMore employed age age2 impairment 
 local depvar moved mig_workTransfer mig_empSearch mig_marriage mig_famMoved mig_lostLandHome mig_naturalCal mig_otherReason
 foreach y in `depvar' {
-qui reg `y' exposedD Ratio_LoanTOhhs expDXloanR `covars' if age>18, cluster(comm_code)
+qui reg `y' exposedD Ratio_LoanTOhhs expDXloanR  `covars' if age>18, cluster(comm_code)
 estimates store `y'	
 }
 estimates table `depvar', keep(exposedD Ratio_LoanTOhhs expDXloanR `covars') b(%9.5f) se(%9.5f) stats(r2_a N)
 
+* expDXloanR
+
 local covars female ever_married low_secMore employed age age2 impairment 
 local depvar moved mig_workTransfer mig_empSearch mig_marriage mig_famMoved mig_lostLandHome mig_naturalCal mig_otherReason
 foreach y in `depvar' {
-qui reg `y' exposedR Ratio_LoanTOhhs expRXloanR `covars' if age>18, cluster(comm_code)
-estimates store `y'
+qui reg `y' exposedR Ratio_LoanTOhhs expRXloanR  `covars' if age>18, cluster(comm_code)
+estimates store `y'	
 }
-estimates table `depvar', keep(exposedR Ratio_LoanTOhhs expRXloanR `covars') b(%9.4f) se(%9.4f) stats(r2_a N)
+estimates table `depvar', keep(exposedR Ratio_LoanTOhhs expRXloanR `covars') b(%9.5f) se(%9.5f) stats(r2_a N)
 
-
+* expRXloanR
 
 *******************************************************************
 /* Dummy Loan  */
@@ -141,19 +155,22 @@ estimates table `depvar', keep(exposedR Ratio_LoanTOhhs expRXloanR `covars') b(%
 local covars female ever_married low_secMore employed age age2 impairment 
 local depvar moved mig_workTransfer mig_empSearch mig_marriage mig_famMoved mig_lostLandHome mig_naturalCal mig_otherReason
 foreach y in `depvar' {
-qui reg `y' exposedD loan_status expDXloanD `covars' if age>18 & garment==1, cluster(comm_code)
+qui reg `y' exposedD loan_status expDXloanD  `covars' if age>18, cluster(comm_code)
 estimates store `y'	
 }
 estimates table `depvar', keep(exposedD loan_status expDXloanD `covars') b(%9.5f) se(%9.5f) stats(r2_a N)
 
+* expDXloanD
+
 local covars female ever_married low_secMore employed age age2 impairment 
 local depvar moved mig_workTransfer mig_empSearch mig_marriage mig_famMoved mig_lostLandHome mig_naturalCal mig_otherReason
 foreach y in `depvar' {
-qui reg `y' exposedR loan_status expRXloanD `covars' if age>18, cluster(comm_code)
+qui reg `y' exposedR loan_status expRXloanD  `covars' if age>18, cluster(comm_code)
 estimates store `y'
 }
 estimates table `depvar', keep(exposedR loan_status expRXloanD `covars') b(%9.4f) se(%9.4f) stats(r2_a N)
 
+* expRXloanD
 
 *******************************************************************
 
@@ -211,7 +228,25 @@ estimates store `y'
 }
 estimates table `depvar', keep(Ratio_LoanTOhhs `covars') b(%9.4f) se(%9.4f) stats(r2_a N)
 
+/* Relationship between emergency loan and disaster intensity */
 
+local covars female ever_married employed low_secMore age age2 impairment 
+local indepvar exposedD exposedR
+local depvar loan_status Ratio_LoanTOhhs
+
+foreach y in `depvar' {
+foreach x in `indepvar' {
+qui reg `y' `x' `covars' if age>18, cluster(comm_code)
+estimates store `y'_`x'
+}
+}
+estimates table loan_status_exposedD loan_status_exposedR Ratio_LoanTOhhs_exposedD Ratio_LoanTOhhs_exposedR, keep(`indepvar' `covars') b(%9.4f) se(%9.4f) stats(r2_a N)
+
+foreach x in `indepvar' {
+qui reg Ratio_LoanTOhhs `x' `covars' if age>18, cluster(comm_code)
+estimates store `x'
+}
+estimates table `indepvar', keep(`indepvar' `covars') b(%9.4f) se(%9.4f) stats(r2_a N)
 
 
 

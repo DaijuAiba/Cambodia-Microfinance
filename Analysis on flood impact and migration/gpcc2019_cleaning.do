@@ -36,8 +36,8 @@ br c1_khet c2_srok c3_khum c4_phum1 c5_ea c6_building c7_hhno1 hhid
 distinct hhid
 
 
-gen comm_code=substr(hhid, 1,6)
-br hhid comm_code
+gen comm_codeC=substr(hhid, 1,6)
+br hhid comm_codeC
 
 tab urban_rural,m
 tab urban_rural, nolabel
@@ -102,6 +102,9 @@ drop cc1 cc2 cc3 cc4 cc5 cc6 cc7
 egen hhid= concat(c1_khet c2_srok c3_khum c4_phum1 c5_ea c6_building c7_hhno1)
 br c1_khet c2_srok c3_khum c4_phum1 c5_ea c6_building c7_hhno1 hhid
 distinct hhid
+
+gen comm_codeC=substr(hhid, 1,6)
+br hhid comm_codeC
 
 br p12_prevres p12_pro p12_dis p12_com
 tostring p12_prevres, gen(cccP)
@@ -178,7 +181,8 @@ gen employed=(p18_activity==1)
 
 sum female age ever_married age_marriage ceb ceb_f ceb_m employed impairment
 
-rename comm_codeP comm_code
+gen comm_code=comm_codeC
+replace comm_code=comm_codeP if moved==1
 
 keep hhid comm_code female ever_married mig_workTransfer mig_empSearch mig_marriage mig_famMoved mig_lostLandHome mig_naturalCal mig_otherReason ever_attended employed age age_marriage duration_stay moved low_secMore upp_secMore under_gradMore ceb ceb_f ceb_m impairment mkt_gard_crop subsistence_crop garment shop_salespersons mining street_mkt frame_build agri_forest client_info other_occ
 
